@@ -1,0 +1,90 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+namespace org.example.blockchain
+
+asset FileN identified by fileId {
+	o String fileId
+	o String encryptedHash
+	o String encryptedKey
+	o String serializedAccessPolicy
+	o String version
+	--> Node owner
+}
+
+/**
+* The participant model of a Node
+*/
+
+participant Node identified by nodeId {
+	o String nodeId
+	o String nodeName
+	o String[] attributeKeyList
+}
+
+/**
+* The participant model of an Attribute Authority
+*/
+
+participant AttributeAuthority identified by aId {
+	o String aId
+	o String[] attributes
+	o String[] pKeys
+	o String[] sKeys
+}
+
+/**
+ * A transaction which allows Node's to
+ add/edit files in the network
+ */
+
+transaction FileTransaction {
+  --> FileN fileN
+  --> Node node
+  	o String newEncryptedHash
+  	o String newEncryptedKey
+  	o String newSerializedAccessPolicy
+}
+
+/**
+* A transaction which lets a data owner obtain
+decrypted data of a file if he has the appropriate attributes
+*/
+
+transaction GetFileTransaction {
+	--> Node node
+	o String fileId
+}
+
+/**
+* A transaction whick takes place between an Attribute Authority
+and a Node.
+*/
+
+transaction AttributeTransaction {
+	-->AttributeAuthority aAuthority
+	-->Node node
+	o String attribute
+}
+
+
+/**
+ * A notification event to be emitted whenever
+ * any file is added
+ */
+event FileNotification {
+  --> FileN fileN
+}
+

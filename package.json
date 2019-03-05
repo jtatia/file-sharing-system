@@ -1,0 +1,36 @@
+{
+  "engines": {
+    "composer": "^0.20.7"
+  },
+  "name": "file-sharing-system",
+  "version": "0.0.5",
+  "description": "Hyperledger Fabric Network for file sharing using Multi-Authority Attribute Based Encryption as the encryption scheme  and IPFS as the decentralised storage network",
+  "scripts": {
+    "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/file-sharing-system.bna",
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "test": "nyc mocha -t 0 test/*.js && cucumber-js"
+  },
+  "keywords": [
+    "composer",
+    "composer-network"
+  ],
+  "author": "Jai Tatia",
+  "email": "jatjai40@gmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "^0.20.7",
+    "composer-cli": "^0.20.7",
+    "composer-client": "^0.20.7",
+    "composer-common": "^0.20.7",
+    "composer-connector-embedded": "^0.20.7",
+    "composer-cucumber-steps": "^0.20.7",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "cucumber": "^2.2.0",
+    "eslint": "latest",
+    "nyc": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  }
+}
