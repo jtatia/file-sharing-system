@@ -24,6 +24,12 @@ asset FileN identified by fileId {
 	--> Node owner
 }
 
+asset Attribute identified by attrName {
+	o String attrName
+	o String pKey
+	o String sKey
+}
+
 /**
 * The participant model of a Node
 */
@@ -40,9 +46,7 @@ participant Node identified by nodeId {
 
 participant AttributeAuthority identified by aId {
 	o String aId
-	o String[] attributes
-	o String[] pKeys
-	o String[] sKeys
+	o Attribute[] attributes
 }
 
 /**
@@ -73,10 +77,20 @@ transaction GetFileTransaction {
 and a Node.
 */
 
-transaction AttributeTransaction {
+transaction RequestAttributeTransaction {
 	-->AttributeAuthority aAuthority
 	-->Node node
-	o String attribute
+	-->Attribute attribute
+}
+
+/**
+* Transaction executed by AA for granting attribute key to Node
+*/
+
+transaction GrantAttributeTransaction {
+	-->AttributeAuthority aAuthority
+	-->Node node
+	o String attributeSecretKey
 }
 
 
