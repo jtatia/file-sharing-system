@@ -37,6 +37,7 @@ asset Attribute identified by attrName {
 participant Node identified by nodeId {
 	o String nodeId
 	o String nodeName
+    o String[] attributeList
 	o String[] attributeKeyList
 }
 
@@ -46,7 +47,7 @@ participant Node identified by nodeId {
 
 participant AttributeAuthority identified by aId {
 	o String aId
-	o Attribute[] attributes
+	-->Attribute[] attributes
 }
 
 /**
@@ -90,6 +91,7 @@ transaction RequestAttributeTransaction {
 transaction GrantAttributeTransaction {
 	-->AttributeAuthority aAuthority
 	-->Node node
+    o String attribute
 	o String attributeSecretKey
 }
 
@@ -101,4 +103,5 @@ transaction GrantAttributeTransaction {
 event FileNotification {
   --> FileN fileN
 }
+
 
