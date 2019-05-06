@@ -35,3 +35,19 @@ rule AllParticipantsHaveAccessToAllResources {
   resource: "org.example.blockchain.*"
   action: ALLOW
 }
+
+rule ReadRessources {
+description: "Grant ALL participant full access to system resources"
+participant: "org.example.blockchain.**"
+operation: ALL
+resource: "org.hyperledger.composer.system.**"
+action: ALLOW
+}
+
+rule ReadNetwork {
+    description: "Allow all participants to read network"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: READ
+    resource: "org.hyperledger.composer.system.Network"
+    action: ALLOW
+}

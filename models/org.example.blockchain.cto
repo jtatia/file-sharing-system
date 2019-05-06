@@ -27,7 +27,6 @@ asset FileN identified by fileId {
 asset Attribute identified by attrName {
 	o String attrName
 	o String pKey
-	o String sKey
 }
 
 /**

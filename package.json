@@ -3,7 +3,7 @@
     "composer": "^0.20.7"
   },
   "name": "file-sharing-system",
-  "version": "0.0.3",
+  "version": "1.0.1",
   "description": "Hyperledger Fabric Network for file sharing using Multi-Authority Attribute Based Encryption as the encryption scheme  and IPFS as the decentralised storage network",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/file-sharing-system.bna",
